@@ -12,10 +12,13 @@
 #include <cctype>
 using namespace std;
 
-bool hasMoreThanSevenUniqueLetters(const string &word, set<char> &uniqueLetters) {
+bool hasMoreThanSevenUniqueLetters(const string &word, set<char> &uniqueLetters) 
+{
     uniqueLetters.clear();
-    for (char ch : word) {
-        if (isalpha(ch)) { // Проверяем, является ли символ буквой
+    for (char ch : word) 
+    {
+        if (isalpha(ch)) // Проверяем, является ли символ буквой
+        { 
             uniqueLetters.insert(tolower(ch));
         }
     }
@@ -26,26 +29,31 @@ int main() {
     ifstream inputFile("input.txt");
     ofstream outputFile("output.txt");
 
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open()) 
+    {
         cerr << "Не удалось открыть файл input.txt" << endl;
         return 1;
     }
 
     string line;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line)) 
+    {
         stringstream ss(line);
         string word;
         set<char> uniqueLetters;
         
-        while (ss >> word) {
+        while (ss >> word) 
+        {
             string originalWord = word; // Сохраняем оригинальное слово
 
             // Убираем знаки препинания с конца слова
-            while (!word.empty() && ispunct(word.back())) {
+            while (!word.empty() && ispunct(word.back())) 
+            {
                 word.pop_back();
             }
             
-            if (hasMoreThanSevenUniqueLetters(word, uniqueLetters)) {
+            if (hasMoreThanSevenUniqueLetters(word, uniqueLetters)) 
+            {
                 // Формируем строку для вставки
                 string uniqueLettersStr(uniqueLetters.begin(), uniqueLetters.end());
                 word += " (" + uniqueLettersStr + ")";
